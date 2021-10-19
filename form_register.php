@@ -6,7 +6,7 @@ require_once("header.php");
     <!-- Блок для вывода сообщений -->
     <div class="block_for_messages">
         <?php
-        //Если в сессии существуют сообщения об ошибках, то выводим их
+        //вывод сообщения о ошибках
         if(isset($_SESSION["error_messages"]) && !empty($_SESSION["error_messages"])){
             echo $_SESSION["error_messages"];
 
@@ -14,7 +14,7 @@ require_once("header.php");
             unset($_SESSION["error_messages"]);
         }
 
-        //Если в сессии существуют радостные сообщения, то выводим их
+        //вывод сообщений об отсутствии ошибок
         if(isset($_SESSION["success_messages"]) && !empty($_SESSION["success_messages"])){
             echo $_SESSION["success_messages"];
 
@@ -25,8 +25,7 @@ require_once("header.php");
     </div>
 
 <?php
-//Проверяем, если пользователь не авторизован, то выводим форму регистрации,
-//иначе выводим сообщение о том, что он уже зарегистрирован
+//Проверяем, авторизован ли пользователь
 if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])){
     ?>
         <div class="forma">
@@ -72,10 +71,11 @@ if(!isset($_SESSION["email"]) && !isset($_SESSION["password"])){
 }else{
     ?>
     <div id="authorized">
-        <h2>Вы уже зарегистрированы</h2>
+        <h2>You are already registered</h2>
     </div>
     <?php
 }
 
 //Подключение подвала
 require_once("footer.php");
+    ?>
